@@ -1,5 +1,6 @@
 # From: https://github.com/microsoft/vscode-samples/blob/master/.gitignore
 dist
+TODO.md
 # Logs
 logs
 *.log
