@@ -1,6 +1,6 @@
 import { writeFile, mkdir, readFile, readdir, stat } from 'fs/promises';
 
-const DATA_DIR = './blog';
+const DATA_DIR = './data';
 const OUTPUT_DIR = './dist';
 
 /**
@@ -18,6 +18,11 @@ async function direxists(dir) {
 }
 async function main() {
   console.log('virkar')
+
+  console.log(await direxists(DATA_DIR))
+
+
+
 }
 
 
