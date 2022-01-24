@@ -8,7 +8,6 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  ignorePatterns: ["node_modules/decimal.js"],
   rules: {
     'no-restricted-syntax': 0,
     'import/prefer-default-export': 0,
@@ -24,7 +23,7 @@ module.exports = {
       code: 100,
       ignoreUrls: true,
       ignoreComments: true,
-      ignoreTemplateLiterals: true
+      ignoreTemplateLiterals: true,
     }],
   },
 };

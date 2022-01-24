@@ -7,7 +7,7 @@
   "scripts": {
     "build": "node ./src/build.js && cpy public dist",
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest ./test/*.js",
-    "eslint": "eslint **/*.js",
+    "lint": "eslint ./src/*.js",
     "stylelint": "stylelint styles.scss ./**/*.scss"
   },
   "repository": {
