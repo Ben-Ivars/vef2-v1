@@ -1,4 +1,4 @@
-import { variance, max, mean, min, median, sum, std } from 'mathjs'
+import { variance, max, mean, min, median, sum, std, size } from 'mathjs'
 
 /**
  * Calculate the Variance of the input array of numbers
@@ -6,6 +6,10 @@ import { variance, max, mean, min, median, sum, std } from 'mathjs'
  * @returns {Number}
  */
 export function myVariance(data) {
+  if (data.length === 0) {
+    // console.log(variance(data));
+    return NaN;
+  }
   return variance(data);
 }
 /**
@@ -14,6 +18,9 @@ export function myVariance(data) {
  * @returns {Number}
  */
 export function myMax(data) {
+  if (data.length === 0) {
+    return NaN;
+  }
   return max(data);
 }
 /**
@@ -22,6 +29,9 @@ export function myMax(data) {
  * @returns {Number}
  */
 export function myMean(data) {
+  if (data.length === 0) {
+    return NaN;
+  }
   return mean(data);
 }
 /**
@@ -30,6 +40,9 @@ export function myMean(data) {
  * @returns {Number}
  */
 export function myMedian(data) {
+  if (data.length === 0) {
+    return NaN;
+  }
   return median(data);
 }
 /**
@@ -38,6 +51,9 @@ export function myMedian(data) {
  * @returns {Number}
  */
 export function myMin(data) {
+  if (data.length === 0) {
+    return NaN;
+  }
   return min(data);
 }
 /**
@@ -46,9 +62,15 @@ export function myMin(data) {
  * @returns {Number}
  */
 export function myStdDev(data) {
+  if (data.length === 0 || data.length === 1) {
+    return NaN;
+  }
   return std(data);
 }
 export function mySum(data) {
+  if (data.length === 0) {
+    return NaN;
+  }
   return sum(data);
 }
 /**
@@ -57,7 +79,10 @@ export function mySum(data) {
  * @returns {Number} the range of the dataset
  */
 export function myRange(data) {
-  return myMax(data) - myMin(data);
+  if (data.length === 0) {
+    return NaN;
+  }
+  return (myMax(data) - myMin(data));
 }
 /**
  * Performs set of calculations on dataset

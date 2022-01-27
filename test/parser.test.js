@@ -1,3 +1,7 @@
+//  I have never written nodejs or a jest test for a js module
+//  therefore I consulted Jon Gunnar's solution quite heavily
+//  Link to his repo: https://github.com/jongvnnar/vef2-2022-v1
+
 import { describe, expect, it } from '@jest/globals';
 import { rmThousDot, parse } from '../src/parser';
 
@@ -67,10 +71,15 @@ describe('parser', () => {
     const parsed = parse(input);
     expect(parsed).toEqual([12.5]);
   });
-  it('Ignores comments', () => {
-    const input = '#125';
+  it('Ignores comments with text', () => {
+    const input = '#comment';
     const parsed = parse(input);
-    expect(parsed).toEqual(null);
+    expect(parsed).toEqual([]);
+  });
+  it('Ignores comments with numbers', () => {
+    const input = '#123';
+    const parsed = parse(input);
+    expect(parsed).toEqual([]);
   });
   it('Ignores whitespace', () => {
     const input = '      1         ';
@@ -80,12 +89,12 @@ describe('parser', () => {
   it('Ignores empty lines 1', () => {
     const input = '            ';
     const parsed = parse(input);
-    expect(parsed).toEqual(null);
+    expect(parsed).toEqual([]);
   });
   it('Ignores empty lines 2', () => {
     const input = '';
     const parsed = parse(input);
-    expect(parsed).toEqual(null);
+    expect(parsed).toEqual([]);
   });
   it('Ignores empty lines 3', () => {
     const input = `
@@ -103,11 +112,11 @@ describe('parser', () => {
   it('ignores malformed numbers 1', () => {
     const input = '100aa';
     const parsed = parse(input);
-    expect(parsed).toEqual(null);
+    expect(parsed).toEqual([]);
   });
   it('ignores malformed numbers 2', () => {
     const input = 'aa100';
     const parsed = parse(input);
-    expect(parsed).toEqual(null);
+    expect(parsed).toEqual([]);
   });
 });
