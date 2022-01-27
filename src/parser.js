@@ -19,14 +19,14 @@ export function parse(content) {
   const strArr = cmtArr.filter(item => item)
   // if array is empty return null
   if (strArr.length === 0) {
-    return null;
+    return [];
   }
   // parse to number
   const num = strArr.map(Number)
   // remove NaN numbers
   const arr = num.filter(item => !Number.isNaN(item))
   if (arr.length === 0) {
-    return null;
+    return [];
   }
   return arr;
 }

@@ -1,61 +1,63 @@
+import { variance, max, mean, min, median, sum, std } from 'mathjs'
+
 /**
  * Calculate the Variance of the input array of numbers
  * @param {Array<Number>} data input array of numbers from dataset
  * @returns {Number}
  */
-export function variance(data) {
-  return;
+export function myVariance(data) {
+  return variance(data);
 }
 /**
  * Find the max value of the input array of numbers
  * @param {Array<Number>} data input array of numbers from dataset
  * @returns {Number}
  */
-export function max(data) {
-  return;
+export function myMax(data) {
+  return max(data);
 }
 /**
  * Calculate the Mean of the input array of numbers
  * @param {Array<Number>} data input array of numbers from dataset
  * @returns {Number}
  */
-export function mean(data) {
-  return;
+export function myMean(data) {
+  return mean(data);
 }
 /**
  * Find the Median of the input array of numbers
  * @param {Array<Number>} data input array of numbers from dataset
  * @returns {Number}
  */
-export function median(data) {
-  return;
+export function myMedian(data) {
+  return median(data);
 }
 /**
  * Find the Min of the input array of numbers
  * @param {Array<Number>} data input array of numbers from dataset
  * @returns {Number}
  */
-export function min(data) {
-  return;
+export function myMin(data) {
+  return min(data);
 }
 /**
  * Calculate the Standard deviation of the input array of numbers
  * @param {Array<Number>} data input array of numbers from dataset
  * @returns {Number}
  */
-export function stdDev(data) {
-  return;
+export function myStdDev(data) {
+  return std(data);
 }
-export function sum(data) {
-  return;
+export function mySum(data) {
+  return sum(data);
 }
 /**
  * Calculate the range of a dataset
  * @param {Array<number>} data input array of numbers from dataset
  * @returns {Number} the range of the dataset
  */
-export function range(data) {
-  return max(data) - min(data);
+export function myRange(data) {
+  return myMax(data) - myMin(data);
 }
 /**
  * Performs set of calculations on dataset
@@ -72,13 +74,13 @@ export function range(data) {
  */
 export function calculateAnalysis(data) {
   return {
-    variance: variance(data),
-    max: max(data),
-    mean: mean(data),
-    median: median(data),
-    min: min(data),
-    stddev: stdDev(data),
-    sum: sum(data),
-    range: range(data),
+    variance: myVariance(data),
+    max: myMax(data),
+    mean: myMean(data),
+    median: myMedian(data),
+    min: myMin(data),
+    stddev: myStdDev(data),
+    sum: mySum(data),
+    range: myRange(data),
   };
 }

@@ -32,6 +32,7 @@
     "stylelint-config-standard": "^22.0.0"
   },
   "dependencies": {
-    "cpy-cli": "^3.1.1"
+    "cpy-cli": "^3.1.1",
+    "mathjs": "^10.1.0"
   }
 }
