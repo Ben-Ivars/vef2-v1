@@ -40,7 +40,9 @@ export function entryTemplate(title, content, showBack = false) {
       <link rel="stylesheet" href="styles.css">
     </head>
     <body>
+      <div class="content">
       ${content ?? ''}
+      </div>
       ${back}
     </body>
   </html>`;
