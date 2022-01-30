@@ -30,7 +30,7 @@ async function main() {
   if (!(await direxists(OUTPUT_DIR))) {
     await mkdir(OUTPUT_DIR);
   }
-
+  console.log(files)
   const numAnlys = [];
 
   for (const file of files) {
@@ -48,7 +48,7 @@ async function main() {
     const filename = join(OUTPUT_DIR, `dataset_${slug}.html`);
 
     // html stuff
-    const html = makeHTML(calced)
+    const html = makeHTML(calced, slug)
     const title = 'Dataset '.concat(slug)
     const numEntry = entryTemplate(title, html, true)
 
@@ -61,14 +61,6 @@ async function main() {
   }
   const index = entryTemplate('Gagnavinnsla', makeIndex(numAnlys));
   await writeFile(join(OUTPUT_DIR, 'index.html'), index, { flag: 'w+' });
-  // console.log(file.split('.')[0])
-
-  // const a = await read_txt('./data/1.txt');
-  // const b = await parse(a);
-  // const c = await calculateAnalysis(b);
-  // console.log(c)
-
-
 }
 
 main().catch((err) => console.error(err));

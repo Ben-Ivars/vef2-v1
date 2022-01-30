@@ -20,6 +20,7 @@ html {
   --max-width: 1400px;
 
   --color-text: #222;
+  --color-text-secondary: #222;
   --color-link: #069;
   --color-border: #ccc;
 
@@ -34,7 +35,23 @@ html {
   --offset: 20px;
 }
 
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  src: url(./fonts/inter.ttf) format('woff');
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-display: swap;
+  src: url(./fonts/playfair-display.ttf) format('woff');
+}
+
 body {
+  padding-top: var(--spacing);
+
   font-size: var(--font-size);
   line-height: 1.5;
   font-family: var(--font-family-base);
@@ -42,4 +59,350 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-family-heading);
+}
+
+/*** Layout ***/
+
+/* Utan um allt efni, miðjar og setur breidd */
+.wrapper {
+  /* Útbýr bil á milli lóðréttra eininga */
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  gap: var(--gutter);
+
+  margin: 0 auto;
+  width: calc(100% - (2 * var(--offset)));
+  max-width: var(--max-width);
+}
+
+main {
+  /* Útbýr bil á milli lóðréttra eininga */
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  gap: var(--gutter);
+
+  /* setjum margin neðst, annars endar efni skyndilega */
+  margin-bottom: var(--gutter);
+}
+
+/* Nýjustu fréttir og mest lesið */
+@media (min-width: 700px) {
+  .latest-most-read {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: var(--gutter);
+  }
+
+  .latest {
+    grid-column: 1 / span 8;
+  }
+
+  .most-read {
+    grid-column: 9 / span 4;
+  }
+}
+
+@media (min-width: 1000px) {
+  .latest {
+    grid-column: 1 / span 9;
+  }
+
+  .most-read {
+    grid-column: 10 / span 3;
+  }
+
+  .latest .content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gutter);
+  }
+
+  .latest .content section {
+    grid-column: span 1;
+  }
+}
+
+/* Flokkar */
+@media (min-width: 700px) {
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--gutter);
+  }
+
+  .categories section {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 1000px) {
+  .categories section {
+    grid-column: span 3;
+  }
+}
+
+/*** Almennar skilgreiningar ***/
+
+/* Viljum að myndir fylli út í foreldri sitt */
+.image {
+  width: 100%;
+}
+
+.image img {
+  max-width: 100%;
+}
+
+/* Tenglar */
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+/* Dagstími */
+time {
+  position: relative;
+
+  padding-left: 22px;
+
+  color: var(--color-text-secondary);
+  font-variation-settings: 'wght' 300;
+}
+
+time:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 0;
+
+  display: inline-block;
+
+  width: 18px;
+  height: 18px;
+
+  background-image: url(./images/clock.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 18px 18px;
+}
+
+/*** Einingar ***/
+
+/* Fyrirsögn */
+header h1 {
+  font-size: 2rem;
+
+  line-height: 1;
+  font-variation-settings: 'wght' 600;
+}
+
+/* hér er stuðningur við skalanlegaletur stærð með fallback */
+@media (min-width: 1000px) {
+  header h1 {
+    font-size: 4rem;
+  }
+}
+
+/*
+ef vafri styður clamp, notum það til að skala línulega, annars er 2rem <800px
+og með media query að ofan farið í 4rem í >=800px
+*/
+@supports (font-size: clamp(1rem, 2rem, 3rem)) {
+  header h1 {
+    font-size: clamp(2rem, var(--font-size) + 4vw, 4rem);
+  }
+}
+
+/* Nýtt efni */
+.latest h2 {
+  margin-bottom: calc(var(--spacing) / 2);
+}
+
+.latest .content section {
+  display: flex;
+  flex-direction: column;
+
+  /* Lætur sjálfvirki grid útreikninga hanga innan grid, samt ekki ideal */
+  overflow: hidden;
+
+  margin-bottom: var(--gutter);
+}
+
+@media (min-width: 1000px) {
+  /* þurfum ekki bil þegar allt er í línu */
+  /* samt eiginlega layout mál! */
+  .latest .content section {
+    margin-bottom: 0;
+  }
+}
+
+.latest .content section:last-child {
+  padding-right: 0;
+}
+
+.latest .content section h3 {
+  margin-bottom: calc(var(--spacing) / 2);
+}
+
+.latest .content section .image {
+  order: -1;
+  margin-bottom: calc(var(--spacing) / 2);
+}
+
+.latest .content section .image img {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+
+.latest .content section p {
+  /* látum textann fá auka pláss, ýtir fyrirsögn efst og dags í botn */
+  flex: 1;
+  margin-bottom: var(--spacing);
+}
+
+/* Mest lesið */
+.most-read h2 {
+  margin-bottom: calc(var(--spacing) / 2);
+}
+
+.most-read ol {
+  padding-left: var(--gutter);
+}
+
+.most-read ol li {
+  margin-bottom: calc(var(--spacing) / 2);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: calc(var(--spacing) / 2);
+}
+
+.most-read ol li:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Auglýsing */
+.ad {
+  position: relative;
+  width: 100%;
+}
+
+.ad .image img {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+
+.ad .content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  padding-left: calc(var(--spacing) * 2);
+  padding-right: calc(var(--spacing) * 2);
+
+  /* notum bara clamp beint hér */
+  font-size: clamp(1rem, var(--font-size) + 2vw, 3rem);
+
+  color: var(--color-text);
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+@media (min-width: 1000px) {
+  .ad .content {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    padding-bottom: var(--spacing);
+  }
+}
+
+.ad a {
+  color: var(--color-text);
+  text-decoration: underline;
+  font-variation-settings: 'wght' 700;
+}
+
+/* Flokkur */
+.categories section {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: var(--gutter);
+}
+
+@media (min-width: 1000px) {
+  .categories section {
+    margin-bottom: 0;
+  }
+}
+
+.categories section h2 {
+  font-size: 2rem;
+}
+
+.categories section h2 span {
+  display:inline-block;
+  border-bottom: 5px solid var(--color-border);
+  margin-bottom: -3px;
+}
+
+.categories section ul {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--color-border);
+  padding: var(--spacing);
+}
+
+.categories section li {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: calc(var(--spacing) / 1);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: calc(var(--spacing) / 1);
+}
+
+.categories section li:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.categories section li:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.categories section h3 {
+  margin-bottom: calc(var(--spacing) / 2);
+}
+
+.categories section h3 a {
+  font-size: 1rem;
+  line-height: 1;
+  font-variation-settings: 'wght' 400;
+}
+
+.categories section .image {
+  order: -1;
+}
+
+.categories section .image img {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
 }
