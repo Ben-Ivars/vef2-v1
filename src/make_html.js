@@ -1,22 +1,31 @@
 export function makeHTML(entry, datanum, rawData) {
   const template = `
-    <section>
-      <h1>Dataset ${datanum}</h1>
-      <ul>
-        <li><strong>Variance: </strong>${entry.variance}</li>
-        <li><strong>Max: </strong>${entry.max}</li>
-        <li><strong>Mean: </strong>${entry.mean}</li>
-        <li><strong>Median: </strong>${entry.median}</li>
-        <li><strong>Min: </strong>${entry.min}</li>
-        <li><strong>Standard deviation: </strong>${entry.stddev}</li>
-        <li><strong>Sum: </strong>${entry.sum}</li>
-        <li><strong>Range: </strong>${entry.range}</li>
-      </ul>
-    </section>
-    <div class="ad">
-    <h1>Gögn: </h1>
-    <p>${rawData}</p>
-    </div>`;
+  <div class="gogn-raw">
+  <div class="gogn">
+    <content>
+      <section>
+        <h2><span>Numerical analysis</span></h2>
+        <ul>
+          <li><strong>Variance: </strong>${entry.variance}</li>
+          <li><strong>Max: </strong>${entry.max}</li>
+          <li><strong>Mean: </strong>${entry.mean}</li>
+          <li><strong>Median: </strong>${entry.median}</li>
+          <li><strong>Min: </strong>${entry.min}</li>
+          <li><strong>Standard deviation: </strong>${entry.stddev}</li>
+          <li><strong>Sum: </strong>${entry.sum}</li>
+          <li><strong>Range: </strong>${entry.range}</li>
+        </ul>
+      </section>
+    </content>
+    <p><a href="/">Til baka</a></p>
+  </div>
+  <div class="raw">
+    <h1>Gögn [Dataset ${datanum}]: </h1>
+    <p>
+      [${rawData}]
+    </p>
+  </div>
+</div>`;
   return template;
 
 }

@@ -33,6 +33,10 @@ html {
   --columns: 12;
   --gutter: 30px;
   --offset: 20px;
+
+  /* Test */
+  /* --background-color: rgb(34, 67, 105); */
+
 }
 
 @font-face {
@@ -121,6 +125,44 @@ main {
   }
 
   .latest .content section {
+    grid-column: span 1;
+  }
+}
+
+/* G0gn og raw gogn */
+@media (min-width: 700px) {
+  .gogn-raw {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: var(--gutter);
+  }
+
+  .gogn {
+    grid-column: 1 / span 4;
+  }
+
+  .raw {
+    grid-column: 5 / span 8;
+  }
+}
+
+@media (min-width: 1000px) {
+  .gogn {
+    grid-column: 1 / span 3;
+  }
+
+  .raw {
+    grid-column: 4 / span 9;
+  }
+
+  .gogn .content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gutter);
+  }
+
+  .gogn .content section {
     grid-column: span 1;
   }
 }
@@ -405,4 +447,100 @@ og með media query að ofan farið í 4rem í >=800px
   object-fit: cover;
   width: 100%;
   height: 200px;
+}
+
+/* Data */
+.gogn h2 {
+  margin-bottom: calc(var(--spacing) / 2);
+  display:inline-block;
+  border-bottom: 5px solid var(--color-border);
+  margin-bottom: -3px;
+}
+
+.gogn .content section {
+  display: flex;
+  flex-direction: column;
+
+  /* Lætur sjálfvirki grid útreikninga hanga innan grid, samt ekki ideal */
+  overflow: hidden;
+
+  margin-bottom: var(--gutter);
+}
+
+@media (min-width: 1000px) {
+  /* þurfum ekki bil þegar allt er í línu */
+  /* samt eiginlega layout mál! */
+  .gogn .content section {
+    margin-bottom: 0;
+  }
+}
+
+.gogn .content section:last-child {
+  padding-right: 0;
+}
+
+.gogn .content section h3 {
+  margin-bottom: calc(var(--spacing) / 2);
+}
+
+.gogn .content section .image {
+  order: -1;
+  margin-bottom: calc(var(--spacing) / 2);
+}
+
+.gogn .content section .image img {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+
+.gogn .content section p {
+  /* látum textann fá auka pláss, ýtir fyrirsögn efst og dags í botn */
+  flex: 1;
+  margin-bottom: var(--spacing);
+}
+
+/* Mest lesið */
+.raw h2 {
+  margin-bottom: calc(var(--spacing) / 2);
+}
+
+.raw p {
+  overflow-wrap: break-word;
+}
+
+.raw ol {
+  padding-left: var(--gutter);
+}
+
+.raw ol li {
+  margin-bottom: calc(var(--spacing) / 2);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: calc(var(--spacing) / 2);
+}
+
+.raw ol li:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.gogn section li {
+  display: flex;
+  /* flex-direction: column; */
+
+  margin-bottom: calc(var(--spacing) / 1);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: calc(var(--spacing) / 1);
+}
+
+.gogn section li:first-child {
+  margin-top: var(--spacing);
+  padding-top: 0;
+}
+
+.gogn section li:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: var(--spacing);
 }
