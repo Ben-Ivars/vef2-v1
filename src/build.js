@@ -48,7 +48,7 @@ async function main() {
     const filename = join(OUTPUT_DIR, `dataset_${slug}.html`);
 
     // html stuff
-    const html = makeHTML(calced, slug)
+    const html = makeHTML(calced, slug, parsed)
     const title = 'Dataset '.concat(slug)
     const numEntry = entryTemplate(title, html, true)
 

@@ -1,4 +1,4 @@
-export function makeHTML(entry, datanum) {
+export function makeHTML(entry, datanum, rawData) {
   const template = `
     <section>
       <h1>Dataset ${datanum}</h1>
@@ -13,7 +13,10 @@ export function makeHTML(entry, datanum) {
         <li><strong>Range: </strong>${entry.range}</li>
       </ul>
     </section>
-  `;
+    <div class="ad">
+    <h1>Gögn: </h1>
+    <p>${rawData}</p>
+    </div>`;
   return template;
 
 }
