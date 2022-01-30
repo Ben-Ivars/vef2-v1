@@ -41,7 +41,7 @@ export function makeIndex(entries) {
       <li>
         <h3>Töluleg greining á gögnum</h3>
         <div class="image">
-        <img src="images/nums.jpg" alt="">
+        <img src="nums.jpg" alt="">
       </div>
       </li>
     </ul>
