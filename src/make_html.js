@@ -1,3 +1,10 @@
+/**
+ * Creates html template for numerical analysis
+ * @param {Object} entry Object containing analysis
+ * @param {String} datanum name of file containing data
+ * @param {String} rawData Raw data to be shown
+ * @returns html template as string
+ */
 export function makeHTML(entry, datanum, rawData) {
   const template = `
   <div class="gogn-raw">
@@ -27,7 +34,11 @@ export function makeHTML(entry, datanum, rawData) {
   return template;
 
 }
-
+/**
+ * Creates html template for section on index page
+ * @param {String} entries retruns entries to be shown on Index page
+ * @returns html section as string
+ */
 export function makeIndex(entries) {
   let list = '';
   for (const entry of entries) {

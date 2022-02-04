@@ -7,7 +7,11 @@ export function rmThousDot(content) {
   //  see data 5.txt to test
   return content.replaceAll('.', '').replaceAll(',', '.').replaceAll(' ', '');
 }
-
+/**
+ * Takes string and parses it and returns array of Numbers
+ * @param {String} content content to be parsed
+ * @returns {Array<Number>} parsed content
+ */
 export function parse(content) {
   //  remove thousand sep. and change to eng. decimal
   const ice = rmThousDot(content)
