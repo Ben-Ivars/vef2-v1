@@ -21,9 +21,7 @@ export function makeHTML(entry, datanum, rawData) {
   </div>
   <div class="raw">
     <h1>Parsed data from [${datanum}.txt]: </h1>
-    <p>
-      [${rawData ?? ''}]
-    </p>
+      ${rawData ?? '<p></p>'}
   </div>
 </div>`;
   return template;
@@ -56,7 +54,11 @@ export function makeIndex(entries) {
 }
 
 /**
- * Takes HTML for a single entry and returns it with the site template.
+ * Generates html doc with content
+ * @param {String} title title of html doc
+ * @param {String} content content to display on html page
+ * @param {Boolean} showBack if true then show back button
+ * @returns HTML document as string
  */
 export function entryTemplate(title, content, showBack = false) {
   const back = showBack ? '<p><a href="/">Til baka</a></p>' : '<p></p>';
@@ -77,9 +79,32 @@ export function entryTemplate(title, content, showBack = false) {
         <span>Verkefni 1 - Benedikt Aron Ívarsson</span>
       </header>
       <main>
-        ${content ?? '<p></p>'}
+        ${content ?? '<p>[]</p>'}
         ${back}
       </main>
   </body>
   </html>`;
+}
+/**
+ *
+ * @param {Array<String>} arr parsed data as array of strings
+ * @returns html with 10 items per line
+ */
+export function rawHelper(arr) {
+  const newArr = [];
+  while (arr.length) {
+    newArr.push(arr.splice(0, 10))
+  }
+  let list = ''
+  const space = '  '
+  for (const lines of newArr) {
+    for (const item of lines) {
+      list += (item + space);
+    }
+    list += '<br>';
+  }
+  const newlist = list.substring(0, list.lastIndexOf('  <br>'));
+  return `<p>
+    [${newlist}]
+  </p>`;
 }

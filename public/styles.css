@@ -507,6 +507,7 @@ og með media query að ofan farið í 4rem í >=800px
 
 .raw p {
   overflow-wrap: break-word;
+  font-family: monospace;
 }
 
 .raw ol {

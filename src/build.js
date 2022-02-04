@@ -4,7 +4,7 @@ import { join } from 'path';
 import { parse } from './parser.js';
 import { readTxt } from './read_data.js';
 import { calculateAnalysis } from './calc.js'
-import { entryTemplate, makeIndex, makeHTML } from './make_html.js';
+import { entryTemplate, makeIndex, makeHTML, rawHelper } from './make_html.js';
 
 
 
@@ -48,7 +48,8 @@ async function main() {
     const filename = join(OUTPUT_DIR, `dataset_${slug}.html`);
 
     // html stuff
-    const html = makeHTML(calced, slug, parsed)
+    const data10list = rawHelper(parsed)
+    const html = makeHTML(calced, slug, data10list)
     const title = 'Dataset '.concat(slug)
     const numEntry = entryTemplate(title, html, false)
 

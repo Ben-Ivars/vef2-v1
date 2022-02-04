@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { makeHTML, makeIndex, entryTemplate } from '../src/make_html.js';
+import { makeHTML, makeIndex, entryTemplate, rawHelper } from '../src/make_html.js';
 
 describe('Generates HTML for numerical analysis', () => {
   it('can handle normal input', () => {
@@ -39,9 +39,7 @@ describe('Generates HTML for numerical analysis', () => {
   </div>
   <div class="raw">
     <h1>Parsed data from [1.txt]: </h1>
-    <p>
-      [1,2,3,4,5]
-    </p>
+      1,2,3,4,5
   </div>
 </div>`);
   });
@@ -81,9 +79,7 @@ describe('Generates HTML for numerical analysis', () => {
   </div>
   <div class="raw">
     <h1>Parsed data from [1.txt]: </h1>
-    <p>
-      []
-    </p>
+      <p></p>
   </div>
 </div>`);
   });
@@ -234,7 +230,7 @@ describe('Generates HTML page with content', () => {
         <span>Verkefni 1 - Benedikt Aron Ívarsson</span>
       </header>
       <main>
-        <p></p>
+        <p>[]</p>
         <p><a href="/">Til baka</a></p>
       </main>
   </body>
@@ -288,7 +284,7 @@ describe('Generates HTML page with content', () => {
         <span>Verkefni 1 - Benedikt Aron Ívarsson</span>
       </header>
       <main>
-        <p></p>
+        <p>[]</p>
         <p></p>
       </main>
   </body>
@@ -320,5 +316,22 @@ describe('Generates HTML page with content', () => {
       </main>
   </body>
   </html>`);
+  });
+});
+
+describe('Generates HTML paragraph with line br every 10 items', () => {
+  it('can handle array with 10 items', () => {
+    const arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+    const html = rawHelper(arr);
+    expect(html).toEqual(`<p>
+    [1  2  3  4  5  6  7  8  9  10]
+  </p>`);
+  });
+  it('can handle array with 15 items', () => {
+    const arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']
+    const html = rawHelper(arr);
+    expect(html).toEqual(`<p>
+    [1  2  3  4  5  6  7  8  9  10  <br>11  12  13  14  15]
+  </p>`);
   });
 });
