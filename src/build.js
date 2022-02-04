@@ -2,7 +2,7 @@ import { writeFile, mkdir, readdir, stat } from 'fs/promises';
 import { join } from 'path';
 
 import { parse } from './parser.js';
-import { read_txt } from './read_data.js';
+import { readTxt } from './read_data.js';
 import { calculateAnalysis } from './calc.js'
 import { entryTemplate, makeIndex, makeHTML } from './make_html.js';
 
@@ -30,7 +30,7 @@ async function main() {
   if (!(await direxists(OUTPUT_DIR))) {
     await mkdir(OUTPUT_DIR);
   }
-  console.log(files)
+  // console.log(files)
   const numAnlys = [];
 
   for (const file of files) {
@@ -41,7 +41,7 @@ async function main() {
       // eslint-disable-next-line no-continue
       continue;
     }
-    const str = await read_txt(path);
+    const str = await readTxt(path);
     const parsed = await parse(str);
     const calced = await calculateAnalysis(parsed)
     const slug = file.split('.')[0];
@@ -50,7 +50,7 @@ async function main() {
     // html stuff
     const html = makeHTML(calced, slug, parsed)
     const title = 'Dataset '.concat(slug)
-    const numEntry = entryTemplate(title, html, true)
+    const numEntry = entryTemplate(title, html, false)
 
     if (filename) {
       await writeFile(filename, numEntry, { flag: 'w+' });

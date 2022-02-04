@@ -6,23 +6,23 @@ export function makeHTML(entry, datanum, rawData) {
       <section>
         <h2><span>Numerical analysis</span></h2>
         <ul>
-          <li><strong>Variance: </strong>${entry.variance}</li>
-          <li><strong>Max: </strong>${entry.max}</li>
-          <li><strong>Mean: </strong>${entry.mean}</li>
-          <li><strong>Median: </strong>${entry.median}</li>
-          <li><strong>Min: </strong>${entry.min}</li>
-          <li><strong>Standard deviation: </strong>${entry.stddev}</li>
-          <li><strong>Sum: </strong>${entry.sum}</li>
-          <li><strong>Range: </strong>${entry.range}</li>
+          <li><strong>Variance: </strong> ${entry.variance}</li>
+          <li><strong>Max: </strong> ${entry.max}</li>
+          <li><strong>Mean: </strong> ${entry.mean}</li>
+          <li><strong>Median: </strong> ${entry.median}</li>
+          <li><strong>Min: </strong> ${entry.min}</li>
+          <li><strong>Standard deviation: </strong> ${entry.stddev}</li>
+          <li><strong>Sum: </strong> ${entry.sum}</li>
+          <li><strong>Range: </strong> ${entry.range}</li>
         </ul>
       </section>
     </content>
     <p><a href="/">Til baka</a></p>
   </div>
   <div class="raw">
-    <h1>Gögn [Dataset ${datanum}]: </h1>
+    <h1>Parsed data from [${datanum}.txt]: </h1>
     <p>
-      [${rawData}]
+      [${rawData ?? ''}]
     </p>
   </div>
 </div>`;
@@ -39,7 +39,7 @@ export function makeIndex(entries) {
       <h2><span>Dataset ${entry}</span></h2>
     <ul>
       <li>
-        <h3>Töluleg greining á gögnum</h3>
+        <h3>Numerical analysis on data</h3>
         <div class="image">
         <img src="nums.jpg" alt="">
       </div>
@@ -59,7 +59,7 @@ export function makeIndex(entries) {
  * Takes HTML for a single entry and returns it with the site template.
  */
 export function entryTemplate(title, content, showBack = false) {
-  const back = showBack ? '<p><a href="/">Til baka</a></p>' : '';
+  const back = showBack ? '<p><a href="/">Til baka</a></p>' : '<p></p>';
   return `<!doctype html>
   <html lang="is">
 
@@ -77,10 +77,9 @@ export function entryTemplate(title, content, showBack = false) {
         <span>Verkefni 1 - Benedikt Aron Ívarsson</span>
       </header>
       <main>
-      ${content ?? ''}
-      ${back}
-    </div>
-
+        ${content ?? '<p></p>'}
+        ${back}
+      </main>
   </body>
   </html>`;
 }

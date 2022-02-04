@@ -1,4 +1,4 @@
-import { variance, max, mean, min, median, sum, std, size } from 'mathjs'
+import { variance, max, mean, min, median, sum, std } from 'mathjs'
 
 /**
  * Calculate the Variance of the input array of numbers

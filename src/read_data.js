@@ -8,10 +8,10 @@ import { readFile, stat } from 'fs/promises';
 
 /**
  *
- * @param {*} path is an path to input file to be read
- * @returns contents (data) as a string
+ * @param {String} path is an path to input file to be read
+ * @returns {String} contents (data) as a string
  */
-export async function read_txt(path) {
+export async function readTxt(path) {
   const info = await stat(path);
   if (!info.isFile()) {
     return console.error('not a file');
